@@ -1,0 +1,66 @@
+https://tunein.com/radio/trending/
+
+--------------------------------------------------------------------------------
+// example channel: URL and helpful HTML tag(s)
+
+https://tunein.com/espnradio/
+  <meta name="twitter:player" content="https://tunein.com/embed/player/s25876/"/>
+
+--------------------------------------------------------------------------------
+// adding back params that instruct server to allow CORS
+
+curl 'https://opml.radiotime.com/Tune.ashx?id=s25876&render=json&listenId=&itemToken=&formats=mp3,aac,ogg,hls&type=station&itemUrlScheme=secure&mode=embed&partnerId=qZjjnm85' \
+  -H 'pragma: no-cache' -H 'origin: https://tunein.com' -H 'accept-encoding: gzip, deflate' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Chrome/90.0.0.0' -H 'accept: application/json, text/plain, */*' -H 'cache-control: no-cache' -H 'authority: opml.radiotime.com' -H 'referer: https://tunein.com/cnn/' -H 'dnt: 1' \
+  --compressed --include
+
+HTTP/2 200
+date: Sat, 04 Sep 2021 01:05:00 GMT
+content-type: application/json
+content-length: 612
+content-encoding: gzip
+vary: Accept-Encoding
+access-control-allow-credentials: true
+access-control-allow-headers: Accept, Content-Type, Content-Range, Content-Disposition, Content-Description, __RequestVerificationToken, Authorization
+access-control-allow-methods: GET, POST, OPTIONS, PUT, PATCH, DELETE
+access-control-allow-origin: https://tunein.com
+x-tunein-dc: us-west-2
+x-envoy-upstream-service-time: 5
+cf-cache-status: DYNAMIC
+expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+server: cloudflare
+cf-ray: 6894b609fc06eb71-LAX
+
+{
+    "head": {
+        "status": "200"
+    },
+    "body": [{
+        "element": "audio",
+        "url": "http://live.wostreaming.net/direct/espn-network-48?source=espn_webplayer",
+        "reliability": 99,
+        "bitrate": 48,
+        "media_type": "aac",
+        "position": 0,
+        "player_width": 640,
+        "player_height": 480,
+        "is_hls_advanced": "false",
+        "live_seek_stream": "false",
+        "guide_id": "e121164958",
+        "is_direct": true
+    }, {
+        "element": "audio",
+        "url": "http://live.wostreaming.net/direct/espn-networkmp3-48?source=espn_webplayer",
+        "reliability": 97,
+        "bitrate": 48,
+        "media_type": "mp3",
+        "position": 0,
+        "player_width": 640,
+        "player_height": 480,
+        "is_hls_advanced": "false",
+        "live_seek_stream": "false",
+        "guide_id": "e121164959",
+        "is_direct": true
+    }]
+}
+
+--------------------------------------------------------------------------------

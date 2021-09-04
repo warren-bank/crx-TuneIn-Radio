@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TuneIn Radio
 // @description  Improve site usability. Listen to audio streams in external player.
-// @version      1.0.0
+// @version      1.0.1
 // @match        *://tunein.com/*
 // @match        *://*.tunein.com/*
 // @icon         https://cdn-web.tunein.com/assets/img/apple-touch-icon-180.png
@@ -197,7 +197,73 @@ var process_dash_url = function(dash_url, vtt_url, referer_url) {
   process_video_url(/* video_url= */ dash_url, /* video_type= */ 'application/dash+xml', vtt_url, referer_url)
 }
 
+var process_audio_url = function(audio_url, audio_type, vtt_url, referer_url) {
+  switch(audio_type) {
+    case 'hls':
+      audio_type = 'application/x-mpegurl'
+      audio_url  = audio_url + '#audio.m3u8'
+      break
+    case 'mp3':
+      audio_type = 'audio/mpeg'
+      audio_url  = audio_url + '#audio.mp3'
+      break
+    case 'm4a':
+    case 'aac':
+      audio_type = 'audio/m4a'
+      audio_url  = audio_url + '#audio.m4a'
+      break
+    case 'ogg':
+      audio_type = 'application/ogg'
+      audio_url  = audio_url + '#audio.ogg'
+      break
+    case 'wav':
+      audio_type = 'audio/wav'
+      audio_url  = audio_url + '#audio.wav'
+      break
+    case 'flac':
+      audio_type = 'audio/flac'
+      audio_url  = audio_url + '#audio.flac'
+      break
+    default:
+      audio_type = null
+      break
+  }
+
+  process_video_url(/* video_url= */ audio_url, /* video_type= */ audio_type, vtt_url, referer_url)
+}
+
 // ----------------------------------------------------------------------------- process video for current channel
+
+var filter_json_data = function(obj) {
+  var OK = ((typeof obj === 'object') && (obj !== null) && obj.url && obj.media_type)
+
+  if (OK)
+    obj.media_type = obj.media_type.toLowerCase()
+
+  return OK
+}
+
+// higher index indicates higher priority
+var sort_order = ['flac', 'wav', 'ogg', 'aac', 'm4a', 'mp3', 'hls']
+
+var sort_json_data_asc = function(obj_A, obj_B) {
+  var index_A, index_B
+
+  index_A = sort_order.indexOf(obj_A.media_type)
+  index_B = sort_order.indexOf(obj_B.media_type)
+
+  return (index_A < index_B)
+    ? -1
+    : (index_A > index_B)
+      ? 1
+      : 0
+}
+
+var sort_json_data_desc = function(obj_A, obj_B) {
+  return -1 * sort_json_data_asc(obj_A, obj_B)
+}
+
+var sort_json_data = sort_json_data_desc
 
 var obtain_live_audiostream_url = function(channel_id) {
   var api_url, callback
@@ -206,13 +272,19 @@ var obtain_live_audiostream_url = function(channel_id) {
 
   callback = function(json_data) {
     try {
-      var hls_url
+      var filtered_data, audio_url, audio_type
 
-      if ((json_data.head.status === '200') && json_data.body.length && json_data.body[0].url) {
-        hls_url = json_data.body[0].url
-        hls_url = hls_url.replace(/\?.*$/, '')
+      if ((json_data.head.status === '200') && json_data.body.length) {
+        filtered_data = json_data.body
+        filtered_data = filtered_data.filter(filter_json_data)
+        filtered_data = filtered_data.sort(sort_json_data)
 
-        process_hls_url(hls_url)
+        if (filtered_data.length) {
+          audio_url  = filtered_data[0].url
+          audio_type = filtered_data[0].media_type
+
+          process_audio_url(audio_url, audio_type)
+        }
       }
     }
     catch(e) {}
