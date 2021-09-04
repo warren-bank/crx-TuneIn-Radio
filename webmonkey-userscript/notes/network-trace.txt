@@ -1,0 +1,199 @@
+https://tunein.com/radio/News--Talk-c57922/
+
+--------------------------------------------------------------------------------
+// example channel: URL and helpful HTML tag(s)
+
+https://tunein.com/cnn/
+  <meta name="twitter:player" content="https://tunein.com/embed/player/s20407/"/>
+
+--------------------------------------------------------------------------------
+// network request(s) by web browser
+
+curl 'https://opml.radiotime.com/Tune.ashx?id=s20407&render=json&listenId=1630704729&itemToken=BgUFAAEAAQABAAEAb28Bt08AAAEFAAA&formats=mp3,aac,ogg,flash,html,hls,wma&type=station&us_privacy=1YNY&gdpr=0&serial=d9696e07-885f-4086-b042-9eb55e9f2b41&partnerId=RadioTime&version=4.74&itemUrlScheme=secure&reqAttempt=1' \
+  -H 'pragma: no-cache' -H 'origin: https://tunein.com' -H 'accept-encoding: gzip, deflate' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Chrome/90.0.0.0' -H 'accept: application/json, text/plain, */*' -H 'cache-control: no-cache' -H 'authority: opml.radiotime.com' -H 'referer: https://tunein.com/cnn/' -H 'dnt: 1' \
+  --compressed --include
+
+HTTP/2 200
+date: Sat, 04 Sep 2021 01:01:00 GMT
+content-type: application/json
+content-length: 504
+content-encoding: gzip
+vary: Accept-Encoding
+access-control-allow-credentials: true
+access-control-allow-headers: Accept, Content-Type, Content-Range, Content-Disposition, Content-Description, __RequestVerificationToken, Authorization
+access-control-allow-methods: GET, POST, OPTIONS, PUT, PATCH, DELETE
+access-control-allow-origin: https://tunein.com
+x-tunein-dc: us-west-2
+x-envoy-upstream-service-time: 20
+cf-cache-status: DYNAMIC
+expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+server: cloudflare
+cf-ray: 68935efe3c355275-LAX
+
+{
+    "head": {
+        "status": "200"
+    },
+    "body": [{
+        "element": "audio",
+        "url": "https://ad-hls.tunein.com/v1/session/30ead7055f8b8e1f2f04add745f139b184df6925/production/v2/newsfree/cnnfree/master.m3u8",
+        "reliability": 100,
+        "bitrate": 96,
+        "media_type": "hls",
+        "position": 0,
+        "player_width": 640,
+        "player_height": 480,
+        "is_hls_advanced": "true",
+        "live_seek_stream": "false",
+        "guide_id": "e125672823",
+        "is_direct": true
+    }]
+}
+
+--------------------------------------------------------------------------------
+// removing params
+
+curl 'https://opml.radiotime.com/Tune.ashx?id=s20407&render=json&listenId=&itemToken=BgUFAAEAAQABAAEAb28Bt08AAAEFAAA&formats=mp3,aac,ogg,hls&type=station' \
+  -H 'pragma: no-cache' -H 'origin: https://tunein.com' -H 'accept-encoding: gzip, deflate' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Chrome/90.0.0.0' -H 'accept: application/json, text/plain, */*' -H 'cache-control: no-cache' -H 'authority: opml.radiotime.com' -H 'referer: https://tunein.com/cnn/' -H 'dnt: 1' \
+  --compressed --include
+
+HTTP/2 200
+date: Sat, 04 Sep 2021 01:02:00 GMT
+content-type: application/json
+content-length: 739
+content-encoding: gzip
+vary: Accept-Encoding
+x-tunein-dc: us-west-2
+x-envoy-upstream-service-time: 3
+cf-cache-status: DYNAMIC
+expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+server: cloudflare
+cf-ray: 68936e0f9ffa3631-LAX
+
+{
+    "head": {
+        "status": "200"
+    },
+    "body": [{
+        "element": "audio",
+        "url": "https://ad-hls.tunein.com/v1/master/30ead7055f8b8e1f2f04add745f139b184df6925/production/v2/newsfree/cnnfree/master.m3u8?ads.cust_params=premium%253dfalse%2526abtest%253d%2526language%253den-US%2526stationId%253ds20407%2526is_ondemand%253dfalse%2526genre_id%253dg3124%2526class%253dtalk%25252cspoken%25252cnews%2526is_family%253dfalse%2526is_mature%253dfalse%2526country_region_id%253d227%2526station_language%253denglish%2526programId%253dp111633%2526is_event%253dfalse&url=https%3a%2f%2ftunein.com%2fdesc%2fs20407%2f&description_url=https%3a%2f%2ftunein.com%2fdesc%2fs20407%2f&ads.npa=1&ads.gdfp_req=1&aw_0_1st.skey=1630706383&aw_0_1st.platform=tunein",
+        "reliability": 100,
+        "bitrate": 96,
+        "media_type": "hls",
+        "position": 0,
+        "player_width": 640,
+        "player_height": 480,
+        "is_hls_advanced": "false",
+        "live_seek_stream": "false",
+        "guide_id": "e125672823",
+        "is_direct": true
+    }]
+}
+
+--------------------------------------------------------------------------------
+// removing params
+
+curl 'https://opml.radiotime.com/Tune.ashx?id=s20407&render=json&listenId=&itemToken=&formats=mp3,aac,ogg,hls&type=station' \
+  -H 'pragma: no-cache' -H 'origin: https://tunein.com' -H 'accept-encoding: gzip, deflate' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Chrome/90.0.0.0' -H 'accept: application/json, text/plain, */*' -H 'cache-control: no-cache' -H 'authority: opml.radiotime.com' -H 'referer: https://tunein.com/cnn/' -H 'dnt: 1' \
+  --compressed --include
+
+HTTP/2 200
+date: Sat, 04 Sep 2021 01:03:00 GMT
+content-type: application/json
+content-length: 739
+content-encoding: gzip
+vary: Accept-Encoding
+x-tunein-dc: us-west-2
+x-envoy-upstream-service-time: 3
+cf-cache-status: DYNAMIC
+expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+server: cloudflare
+cf-ray: 689370787fd70ce7-LAX
+
+{
+    "head": {
+        "status": "200"
+    },
+    "body": [{
+        "element": "audio",
+        "url": "https://ad-hls.tunein.com/v1/master/30ead7055f8b8e1f2f04add745f139b184df6925/production/v2/newsfree/cnnfree/master.m3u8?ads.cust_params=premium%253dfalse%2526abtest%253d%2526language%253den-US%2526stationId%253ds20407%2526is_ondemand%253dfalse%2526genre_id%253dg3124%2526class%253dtalk%25252cspoken%25252cnews%2526is_family%253dfalse%2526is_mature%253dfalse%2526country_region_id%253d227%2526station_language%253denglish%2526programId%253dp111633%2526is_event%253dfalse&url=https%3a%2f%2ftunein.com%2fdesc%2fs20407%2f&description_url=https%3a%2f%2ftunein.com%2fdesc%2fs20407%2f&ads.npa=1&ads.gdfp_req=1&aw_0_1st.skey=1630707088&aw_0_1st.platform=tunein",
+        "reliability": 100,
+        "bitrate": 96,
+        "media_type": "hls",
+        "position": 0,
+        "player_width": 640,
+        "player_height": 480,
+        "is_hls_advanced": "false",
+        "live_seek_stream": "false",
+        "guide_id": "e125672823",
+        "is_direct": true
+    }]
+}
+
+--------------------------------------------------------------------------------
+// adding back params that instruct server to allow CORS
+
+curl 'https://opml.radiotime.com/Tune.ashx?id=s20407&render=json&listenId=&itemToken=&formats=mp3,aac,ogg,hls&type=station&itemUrlScheme=secure&mode=embed&partnerId=qZjjnm85' \
+  -H 'pragma: no-cache' -H 'origin: https://tunein.com' -H 'accept-encoding: gzip, deflate' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Chrome/90.0.0.0' -H 'accept: application/json, text/plain, */*' -H 'cache-control: no-cache' -H 'authority: opml.radiotime.com' -H 'referer: https://tunein.com/cnn/' -H 'dnt: 1' \
+  --compressed --include
+
+HTTP/2 200
+date: Sat, 04 Sep 2021 01:04:00 GMT
+content-type: application/json
+content-length: 780
+content-encoding: gzip
+vary: Accept-Encoding
+access-control-allow-credentials: true
+access-control-allow-headers: Accept, Content-Type, Content-Range, Content-Disposition, Content-Description, __RequestVerificationToken, Authorization
+access-control-allow-methods: GET, POST, OPTIONS, PUT, PATCH, DELETE
+access-control-allow-origin: https://tunein.com
+x-tunein-dc: us-west-2
+x-envoy-upstream-service-time: 5
+cf-cache-status: DYNAMIC
+expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+server: cloudflare
+cf-ray: 689371934e2f361e-LAX
+
+{
+    "head": {
+        "status": "200"
+    },
+    "body": [{
+        "element": "audio",
+        "url": "https://ad-hls.tunein.com/v1/master/30ead7055f8b8e1f2f04add745f139b184df6925/production/v2/newsfree/cnnfree/master.m3u8?ads.cust_params=partnerId%253dqZjjnm85%2526ads_partner_alias%253dRadioTime%2526premium%253dfalse%2526abtest%253d%2526language%253den-US%2526stationId%253ds20407%2526is_ondemand%253dfalse%2526genre_id%253dg3124%2526class%253dtalk%25252cspoken%25252cnews%2526is_family%253dfalse%2526is_mature%253dfalse%2526country_region_id%253d227%2526station_language%253denglish%2526programId%253dp111605%2526is_event%253dfalse&url=https%3a%2f%2ftunein.com%2fdesc%2fs20407%2f&description_url=https%3a%2f%2ftunein.com%2fdesc%2fs20407%2f&ads.npa=1&ads.gdfp_req=1&aw_0_1st.playerid=qZjjnm85&aw_0_1st.skey=1630718933&aw_0_1st.platform=tunein",
+        "reliability": 100,
+        "bitrate": 96,
+        "media_type": "hls",
+        "position": 0,
+        "player_width": 640,
+        "player_height": 480,
+        "is_hls_advanced": "false",
+        "live_seek_stream": "false",
+        "guide_id": "e125672823",
+        "is_direct": true
+    }]
+}
+
+--------------------------------------------------------------------------------
+// removing params from example HLS audio stream
+
+hls url: https://ad-hls.tunein.com/v1/master/30ead7055f8b8e1f2f04add745f139b184df6925/production/v2/newsfree/cnnfree/master.m3u8
+referer: none
+result:  success
+
+--------------------------------------------------------------------------------
+// strategy for userscript
+
+1) if document.querySelector('meta[name="twitter:player"]')
+    => redirect to embedded player, and quit
+
+2) if window.location.href matches regex pattern for embedded player
+    => extract channel id (ex: s20407), make XHR for JSON, extract HLS url, redirect to external player, and quit
+
+--------------------------------------------------------------------------------
+// minor css tweak
+
+https://tunein.com/embed/player/s20407/
+  .overlay.openOverlay {display:none;}
+
+--------------------------------------------------------------------------------
